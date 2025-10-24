@@ -1,4 +1,4 @@
-package ecommerceTestProject.ecomTest.base;
+package ecommerceTestProject.ecomTest.tests;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

@@ -1,4 +1,4 @@
-package ecommerceTestProject.ecomTest.base;
+package ecommerceTestProject.ecomTest.tests;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
