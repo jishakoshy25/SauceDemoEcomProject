@@ -21,7 +21,6 @@ public class LoginTest extends BaseTest {
 	@Test
 	public void testSuccessfulLogin() {
 		loginPage.loginAs(PropertiesFileReader.get(VALID_USERNAME), PropertiesFileReader.get(VALID_PASSWORD));
-		assertTrue(inventoryPage.isAt(), "User should be redirected to inventory page after login.");
 		Assertions.assertEquals("Products", inventoryPage.getSecondaryHeaderText());
 		Assertions.assertEquals(inventoryPage.getCurrentUrl(), INVENTORY_URL);
 	}

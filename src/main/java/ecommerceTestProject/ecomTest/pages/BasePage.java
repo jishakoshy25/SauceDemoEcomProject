@@ -15,4 +15,8 @@ public class BasePage {
 	public String getCurrentUrl() {
 		return driver.getCurrentUrl();
 	}
+	
+	public WebDriver getDriver() {
+		return driver;
+	}
 }

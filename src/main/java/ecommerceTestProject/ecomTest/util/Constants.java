@@ -8,4 +8,5 @@ public final class Constants {
 	public static final String INVALID_USERNAME = "invalid_username";
 	public static final String INVALID_PASSWORD = "invalid_password";
 	public static final String INVENTORY_URL = "https://www.saucedemo.com/inventory.html";
+	public static final String ABOUT_URL = "https://saucelabs.com/";
 }
