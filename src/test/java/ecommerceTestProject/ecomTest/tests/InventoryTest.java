@@ -1,6 +1,6 @@
 package ecommerceTestProject.ecomTest.tests;
 
-import static ecommerceTestProject.ecomTest.util.Constants.ABOUT_URL;
+import static ecommerceTestProject.ecomTest.util.Constants.CART_URL;
 import static ecommerceTestProject.ecomTest.util.Constants.HOMEPAGE;
 import static ecommerceTestProject.ecomTest.util.Constants.VALID_PASSWORD;
 import static ecommerceTestProject.ecomTest.util.Constants.VALID_USERNAME;
@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
-import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -26,7 +26,7 @@ public class InventoryTest extends BaseTest {
 	}
 
 	@Test
-	public void testAddingProductToCart() {
+	public void testAddingProductToCart() throws InterruptedException {
 		inventoryPage.clickAddToCart();
 		assertEquals("1", inventoryPage.getCartItemCount());
 		assertTrue(inventoryPage.isRemoveButtonVisible());
@@ -34,7 +34,7 @@ public class InventoryTest extends BaseTest {
 	}
 
 	@Test
-	public void testRemovingProductToCart() {
+	public void testRemovingProductFromCart() throws InterruptedException {
 		inventoryPage.clickAddToCart();
 		assertEquals("1", inventoryPage.getCartItemCount());
 		assertTrue(inventoryPage.isRemoveButtonVisible());
@@ -43,26 +43,24 @@ public class InventoryTest extends BaseTest {
 	}
 
 	@Test
-	public void testSortProducts() {
+	public void testSortProducts() throws InterruptedException {
 		List<String> sortedList = inventoryPage.getSortedListOfInventoryNames();
-		System.out.println("unsorted:" + inventoryPage.getInventoryList());
-		System.out.println("sorted:" + sortedList);
 		inventoryPage.selectFilterBasedOnNameZtoA();
-		System.out.println("after filter select:" + inventoryPage.getInventoryList());
 		assertEquals(sortedList, inventoryPage.getInventoryList());
 	}
 	
 	@Test
-	public void testLogout() throws InterruptedException{
-		inventoryPage.clickLogout();
-		Assertions.assertEquals(inventoryPage.getCurrentUrl(), HOMEPAGE);
-		
+	public void testCart() throws InterruptedException {
+		inventoryPage.clickAddToCart();
+		inventoryPage.clickCartLink();
+		assertEquals(CART_URL, inventoryPage.getCurrentUrl());
+		assertEquals("Your Cart", cartPage.getSecondaryTitle());
+		navigationSideBar.clickAllItemsLink();
+		inventoryPage.clickRemoveBtn();
 	}
 	
-	@Test
-	public void testAboutLink() throws InterruptedException{
-		inventoryPage.clickAboutLink();
-		Assertions.assertEquals(inventoryPage.getCurrentUrl(), ABOUT_URL);
-		
+	@AfterEach
+	public void logout() throws InterruptedException {
+		navigationSideBar.clickLogout();
 	}
 }

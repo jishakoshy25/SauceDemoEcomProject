@@ -5,6 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
+	
+	@FindBy(css = "div.login_logo")
+	private WebElement headerTitle;
 
 	@FindBy(id = "user-name")
 	private WebElement usernameField;
@@ -46,5 +49,9 @@ public class LoginPage extends BasePage {
 
 	public String getErrorText() {
 		return errorMessage.getText();
+	}
+	
+	public String getLoginHeaderTitle() {
+		return headerTitle.getText();
 	}
 }

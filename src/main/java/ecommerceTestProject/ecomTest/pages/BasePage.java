@@ -19,4 +19,12 @@ public class BasePage {
 	public WebDriver getDriver() {
 		return driver;
 	}
+	
+	public String getPageTitle() {
+		return driver.getTitle();
+	}
+	
+	public void goBack() {
+		driver.navigate().back();
+	}
 }
